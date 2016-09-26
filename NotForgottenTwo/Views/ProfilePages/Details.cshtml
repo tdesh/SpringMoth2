@@ -1,0 +1,238 @@
+﻿@model NotForgottenTwo.Models.ProfilePage
+@using NotForgottenTwo.Models;
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<style>
+
+    /*.h3Custom 
+    {
+        
+        color:rgb(69, 74, 78);
+
+    }*/
+
+    /*.h3 a,
+    .h3 a:focus,
+    .h3 a:hover {
+        color: #454a4e; 
+        font-family:sans-serif;
+    }*/
+
+    StoryFooter
+    {
+        text-align:left;
+    }
+
+</style>
+
+
+@using (Html.BeginForm(null, null, FormMethod.Post, new { id = "__ProfilePageDetailsForm" }))
+{
+    @Html.AntiForgeryToken()
+<br/>
+<br/>
+<div class="container">
+    <div class="row col-md-8">
+       
+           
+                <div>
+                    <img class="img-responsive" src="@Url.Action("GetImage", new { ImageLocation = Model.ProfilePicture })" />
+                </div>
+                <div style="align-items:center">
+                    <h2 >@Model.Name </h2>
+                    <h4 style="color:brown; font-weight:300">1945 - 2016</h4>
+                    @*@Model.ShortIntro*@
+                  @if (ViewBag.AccessToPage)
+                  {
+                    @Html.ActionLink("Add Memory", "Create", "Stories", new { ProfilePageId = Model.Id }, new { @class = "btn  btn-primary" })
+                    <a  id="inviteFriend"  class="btn btn-success">Invite a Friend</a>
+                  }
+                  <p>Book Owner : @Model.Owner.Email</p>
+                </div>
+        <br/>
+
+        @if (!ViewBag.AccessToPage)
+        {
+           
+            <div class="panel panel-default">
+                <div id="NotPartOfBook" class="panel-body">
+                    @Html.HiddenFor(model => model.Id)
+                    <h3>Looks like you are not a part of this book yet!</h3>
+                    <a id="joinABook" class="btn btn-success">Request to join Book</a>
+                    @*@Html.ActionLink("Request to join Book", "JoinBook", "ProfilePages", new { ProfilePageId = Model.Id }, new { @class = "btn  btn-success" })*@
+                </div>
+                <div id="RequestToJoinBookSent" style="display:none" class="panel-body">
+                    <h3>Your Request has been sent. We will let you know once you are a part of this book!</h3>
+                </div>
+            </div>
+       
+        }
+        else
+        {
+        @*Display Stories*@
+         <div class="row">
+            <div>
+                @foreach (var story in Model.Stories)
+                {
+                    <div class="panel panel-default">
+                        <div class="panel-body">
+                        <article >
+                            <header>
+                                <h3><a>@story.Title</a></h3>
+                                <span class="meta">24 July 2014 by @story.Owner.Email</span>
+                                <hr />
+                            </header>
+                            <div class="body">
+                                <p>
+                                    @if (story.Text.Length > 200)
+                {
+                                        <span > @story.Text.Substring(0, 200)</span>
+                                    }
+                                    else
+                                    {
+                                        <span >@story.Text.Substring(0, story.Text.Length)</span>
+                                    }
+                                    <span class="completetext" style="display:none">
+                                        @story.Text
+                                    </span>
+                                </p>
+                                <br/>
+                                <span class="showmore"><a class="btn-tales-one btn pull-left">Read More</a></span>
+                                <span class="showless" style="display:none"><a>Less</a></span>
+                           </div>
+                            <div class="clearfix">
+                                @*<img style="height:60px;width:60px" src="~/images/rudolf1.jpg" />*@
+                                @*<img style="height:60px;width:60px" src="@story.Owner.ProfilePicture" />*@
+                            </div>
+                        </article>
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>
+        }
+    </div>
+    <div class="row col-md-3 col-md-offset-1">
+       
+            <div class="panel panel-default">
+                <div class="panel-body">
+                    <blockquote>
+                        <p>Do not dwell in the past, do not dream of the future, concentrate the mind on the present moment.</p>
+                        <small>Budha in <cite title="Source Title">Source Title</cite></small>
+                    </blockquote>
+                </div>
+            </div>
+        <div class="panel panel-default">
+            <div class="panel-body">
+                <blockquote>
+                    <p>The true secret of happiness lies in taking a genuine interest in all the details of daily life.</p><small>William Morris in <cite title="Source Title">Source Title</cite></small>
+                </blockquote>
+            </div>
+        </div>
+        <div class="panel panel-default">
+            <div class="panel-body">
+                <blockquote>
+                    <p>In the end, it's not the years in your life that count. It's the life in your years.</p><small>Abhraham Lincoln <cite title="Source Title">Source Title</cite></small>
+                </blockquote>
+            </div>
+        </div>
+        
+    </div>
+</div>
+
+}
+
+@Html.Partial("_InviteFriend", new InvitationViewModel() { InvitedToProfilePageId = Model.Id, InvitedToProfilePageName= Model.Name })
+
+
+
+
+    <p>
+        @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
+        @Html.ActionLink("Back to List", "Index")
+    </p>
+
+
+    @section Scripts {
+
+        <script language="javascript" type="text/javascript">
+            $(document).ready(function () {
+
+                $("span.showmore").click(function () {
+                    $(this).siblings(".completetext").show();
+                    $(this).siblings(".showless").show();
+                    $(this).siblings(".teasertext").hide();
+                    $(this).hide();
+                });
+
+                $("span.showless").click(function () {
+                    $(this).siblings(".teasertext").show();
+                    $(this).siblings(".showmore").show();
+                    $(this).siblings(".completetext").hide();
+                    $(this).hide();
+                });
+
+                $("#inviteFriend").click(function () {
+                    $("#InviteForm").modal('show');
+                });
+
+                //javascript for the invite
+                $("#submitInvite").click(function (e) {
+                    e.preventDefault();
+                    $.ajax({
+                        type: "POST",
+                        url:"@Url.Action("Create","Invitations")", //process to mail
+                        data: $('#InviteFriends').serialize(),
+                        success: function (msg) {
+                            //   $("#inviteSent").html(msg) //hide button and show thank you
+                            $("#InviteForm").modal('hide'); //hide popup
+                        },
+                        error: function () {
+
+
+                            //alert("There was an error.Please try again.");
+                        }
+                    });
+                });
+
+                var form = $('#__ProfilePageDetailsForm');
+                var token = $('input[name="__RequestVerificationToken"]', form).val();
+
+
+                //javascript for the invite
+                $("#joinABook").click(function (e) {
+                    e.preventDefault();
+                    $.ajax({
+                        type: "POST",
+                        url:"@Url.Action("JoinABook","ProfilePages")", //process to mail
+                        data: //$('#myform123').serialize()
+                            {
+                                __RequestVerificationToken: token,
+                                Id: @Model.Id
+                                },
+                        @*data: JSON.stringify({
+                            __RequestVerificationToken: token,
+                            Id:@Model.Id    }),*@
+                        success: function (msg) {
+                            if (response != null && response.success) {
+                                $("#NotPartOfBook").hide();
+                                $("#RequestToJoinBookSent").show();
+                            } else{
+                                alert("Something went wrong.Try again later");
+                            }
+                        },
+                        error: function () {
+                            alert("Something went wrong.Try again later");
+                        }
+                    });
+                });
+
+
+            });
+        </script>
+
+
+    }

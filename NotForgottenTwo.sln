@@ -1,0 +1,28 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.25123.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NotForgottenTwo", "NotForgottenTwo\NotForgottenTwo.csproj", "{2AE8C0CC-0245-425C-B42C-9B0F89A32C29}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NotForgottenTwo.UnitTests", "NotForgottenTwo.UnitTests\NotForgottenTwo.UnitTests.csproj", "{B7218007-FF8F-49E1-BB84-FD9631640ACB}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{2AE8C0CC-0245-425C-B42C-9B0F89A32C29}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2AE8C0CC-0245-425C-B42C-9B0F89A32C29}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2AE8C0CC-0245-425C-B42C-9B0F89A32C29}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2AE8C0CC-0245-425C-B42C-9B0F89A32C29}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B7218007-FF8F-49E1-BB84-FD9631640ACB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B7218007-FF8F-49E1-BB84-FD9631640ACB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B7218007-FF8F-49E1-BB84-FD9631640ACB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B7218007-FF8F-49E1-BB84-FD9631640ACB}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

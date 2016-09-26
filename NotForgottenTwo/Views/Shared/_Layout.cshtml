@@ -1,0 +1,69 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - Not Forgotten</title>
+    @Styles.Render("~/Content/css")
+    @*@Styles.Render("~/Content/css/jansy")*@
+    @Scripts.Render("~/bundles/modernizr")
+    @*<script src="https://code.jquery.com/jquery.js"></script>
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/jasny-bootstrap/3.1.3/css/jasny-bootstrap.min.css">
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jasny-bootstrap/3.1.3/js/jasny-bootstrap.min.js"></script>*@
+    <link rel="stylesheet" type="text/css" href="~/Content/typeahead.css" />
+    @*<link rel="stylesheet" type="text/css" href="~/Content/blueGreenStyle.css" />*@
+    <!-- Optional CSS -->
+    <link rel="stylesheet" href="~/Content/jquery.typeahead.min.css">
+
+    
+   
+</head>
+<body>
+    <div class="navbar navbar-default navbar-fixed-top">
+        <div class="container">
+            @*<div class="navbar-header" style="background-image: url('../../Content/Images/Transparent logo.png'); background-size:cover">*@
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                @*@Html.ActionLink("tuuyuyiyuyyiuojojpjojopo", "Index", "Home", new { area = " }, new { @class = "navbar-brand" })*@
+                <a href="@Url.Action("Index","Home")" class="navbar-left">
+                    <img src="~/Content/Images/PrimaryLogo_SpringMoth.png" class="img-responsive" />
+                </a>
+            </div>
+           
+            <div class="navbar-collapse collapse">
+                <ul class="nav navbar-nav">
+                    <li>@Html.ActionLink("Our Story", "About", "Home")</li>
+                    <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
+                </ul>
+                <div class="col-sm-2 col-md-3">
+                    @Html.Partial("_SearchPeople", new NotForgottenTwo.Models.Autocomplete())
+                </div>
+                @Html.Partial("_LoginPartial")
+            </div>
+        </div>
+        
+    </div>
+    <div class="container body-content">
+        @RenderBody()
+        <hr />
+        <footer>
+            <p>&copy; @DateTime.Now.Year - SpringMoth Pty Ltd</p>
+        </footer>
+    </div>
+
+
+   
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @Scripts.Render("~/bundles/typeahead")
+
+    @RenderSection("scripts", required: false)
+</body>
+</html>

@@ -1,0 +1,156 @@
+﻿@{
+    ViewBag.Title = "Home Page";
+}
+
+
+<style>
+    .landingpageMainDiv {
+        /*background-image: url('../../Content/IMG_1922-X2.jpg');*/
+        /*background-image: url('../../Content/IMG_flower_cropped.jpg');*/
+        /*background-image: url('../../Content/Images/BeFunky Collage_paint.jpg');*/
+        /*background-image: url('../../Content/Images/sunshine_paint.jpg');*/
+        /*background-image: url('../../Content/Images/collagefaded.jpg');*/
+        /*background-image: url('../../Content/Images/tuxpi.com.1470099717.jpg');*/
+        background-size: cover;
+        /*background-image: url('../../Content/BeFunky Collage_low quality.jpg');*/
+        background-image: url('../../Content/Images/Collage big low quality.jpg');
+        /*background-image: 
+    linear-gradient(
+      rgba(0, 0, 0, 0.5),
+      rgba(0, 0, 0, 0.5)
+    ),
+    url('../../Content/IMG_flower_cropped.jpg');*/
+    }
+
+
+    .LandingPageTitle_old { 
+  /*//background-color: black;*/
+  color: #fff; 
+  display: inline;
+  padding: 0.5rem;
+  
+  /*-webkit-box-decoration-break: clone;*/
+  box-decoration-break: clone;
+  background: #A39E01; /* fallback color */
+   background: rgba(0, 0, 0, 0.6);
+}
+
+     .LandingPageTitle { 
+  /*//background-color: black;*/
+  color: #fff; 
+  padding: 0.5rem;
+  
+  /*-webkit-box-decoration-break: clone;*/
+  
+  background: #A39E01; /* fallback color */
+   background: rgba(0, 0, 0, 0.2);
+}
+
+    .landingDiv{
+        background: rgb(44,68,122);
+        background: rgba(0,0,0,0.7);
+
+        padding:5px,5px,5px,5px;
+    }
+
+
+    .LandingPageLogo{
+        color:white;
+    }
+
+    .LandingPageLogo
+    {
+    width:300px;
+    height:50px;
+    border-radius:250px;
+    font-size:20px;
+    color:#fff;
+    line-height:50px;
+    text-align:center;
+    background:#A39E01;
+    }
+
+    .LandingPageText
+    {
+    width:600px;
+    height:50px;
+    border-radius:250px;
+    font-size:20px;
+    color:#fff;
+    line-height:50px;
+    text-align:center;
+    background:#A39E01;
+    }
+
+    /*.btn-primary
+    {
+        height:60px;
+        width:200px;
+        text-align:center;
+        vertical-align:central;
+        font:800;
+        font-size:larger;
+    }*/
+
+</style>
+<br/>
+<br />
+<div class="jumbotron landingpageMainDiv container">
+  <div class="hidden-sm col-md-2">
+  </div>
+  <div class="hidden-sm col-md-3" >
+   </div>
+    <div class="col-md-4 landingDiv">
+        <br class="hidden-sm" />
+        <h3 class="LandingPageTitle pull-left"> Celebrating lives lost.</h3>
+        @*<h3 class="lead LandingPageTitle pull-left"> Celebrating lost lives</h3>*@
+        <h5 class="LandingPageTitle pull-left">Share life stories of lost loved ones.</h5>
+        <br/>
+        <br class="hidden-sm" />
+        <br class="hidden-sm" />
+        <a href="~/Account/Login" style="font-weight:800; color:black" class="btn btn-success btn-lg">Share a Story</a>
+        <br class="hidden-sm" />
+        <br class="hidden-sm" />
+        <br class="hidden-sm" />
+        <br class="hidden-sm" />
+    </div>
+    <div class="col-xs-3 col-md-3">
+
+    </div>
+    <br />
+    <br />
+</div>
+
+
+
+@*<div class="jumbotron landingpageMainDiv container-fluid" >
+    @*<h2 class="LandingPageTitle">Not Forgotten</h2>
+    <br/>
+    <p class="lead LandingPageTitle">Create story books to preserve memories..</p>*@
+    @*<p class="lead LandingPageTitle">Nothing is ever really lost to us as long as we remember it..</p>*@
+   @* <p class="lead LandingPageTitle pull-right ">Celebrating lost lives</p>
+    <br/>
+    <br class="hidden-sm" />
+    <br class="hidden-sm" />
+    <br />
+    <p><a href="~/Account/Login" class="btn btn-primary btn-lg pull-right">Share a Story</a></p>
+    <br/>
+</div>*@
+
+<div class="row">
+    <div class="col-md-4">
+        <h2> <a>Take a Tour</a></h2>
+        <p>Take a tour of some story books to learn more about the thinking behind this website.</p>
+        <p><a href="@Url.Action("","")">Read More..</a></p>
+    </div>
+    <div class="col-md-4">
+        <h2> <a>Our Story</a></h2>
+        <p>Read our story about how we came up with SpringMoth and why is the important to us.</p>
+        <p><a href="@Url.Action("","")">Read More..</a></p>
+    </div>
+    <div class="col-md-4">
+        <h2> <a>Browse Story Books</a></h2>
+        <p>Browse some story books to see how its done</p>
+        <p><a href="@Url.Action("","")"> Read More..</a></p>
+    </div>
+</div>

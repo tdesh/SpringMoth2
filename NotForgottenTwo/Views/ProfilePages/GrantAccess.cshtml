@@ -1,0 +1,45 @@
+﻿@model IEnumerable<NotForgottenTwo.Models.UserProfilePageRelation>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+@if (Model.Count() == 0)
+{
+    <br />
+    @foreach (var item in Model)
+    {
+    <div class="panel panel-default">
+        <div class="panel-body">
+            <div class="row">
+                <div class="col-xs-10 col-lg-offset-1">
+                    <h4>User wantes to participate in the for the Book Name</h4>
+                </div>
+            </div>
+            <div class="row">
+                <div class="well col-xs-10 col-lg-offset-1">
+                    <div class="col-md-4">
+                        <div class="pull-right">
+                            <a class="btn btn-success">Grant Access</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    }
+}
+
+
+
+@section Scripts{
+
+    <script language="javascript" , type="text/javascript">
+
+    </script>
+
+}
+
+

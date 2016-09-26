@@ -1,0 +1,119 @@
+﻿@model NotForgottenTwo.Models.Story
+
+@{
+    ViewBag.Title = "Create";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@*<h2>Tell a Story</h2>*@
+
+<style>
+
+
+    .input-NoMoreMaxWidth {
+        max-width: 800px !important;
+    }
+ 
+
+</style>
+
+
+@using (Html.BeginForm()) 
+{
+    @Html.AntiForgeryToken()
+    
+    <div class="form-horizontal">
+      <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+        @*<div class="form-group">
+            <div class="control-label col-md-2">
+                Person/Hero
+            </div>
+            <div class="col-md-10">
+             
+                <div>
+                    <div id="details"></div>
+                    <input type="text" id="Search" data-provide="typeahead" placeholder="Client Name" autocomplete="off" />
+                </div>
+            </div>
+        </div>*@
+
+        <div>
+            <img class="img-responsive" src="@Url.Action("GetImage","ProfilePages",  new { ImageLocation = ViewBag.ProfilePicture })" />
+        </div>
+
+        <div class="form-group">
+            @*<img class="img-circle" style="height:150px;width:150px" src="@Url.Action("GetImage","ProfilePages",  new { ImageLocation = ViewBag.ProfilePicture })" />*@
+            <input type="hidden" value="@ViewBag.ProfilePageId"/>
+        </div>
+
+        <div class="form-group">
+                @*@Html.EditorFor(model => model.Title, new { htmlAttributes = new { @class = "form-control" } })*@
+                <input id="Title" name="Title" class="form-control input-lg input-NoMoreMaxWidth" placeholder="Tittle" />
+                @Html.ValidationMessageFor(model => model.Title, "", new { @class = "text-danger" })
+        </div>
+
+        <div class="form-group">
+            @*@Html.LabelFor(model => model.Text, htmlAttributes: new { @class = "control-label col-md-2" })*@
+            
+                @*@Html.EditorFor(model => model.Text, new { htmlAttributes = new { @class = "form-control" } })*@
+
+                @*<input id="Text" name="Text" type="text"  class="form-control"/>*@
+
+                <textarea id="Text" name="Text" rows="10" class="form-control col-md-10 input-NoMoreMaxWidth" placeholder="Tell a Story about @ViewBag.ProfileName"></textarea>
+
+                @Html.ValidationMessageFor(model => model.Text, "", new { @class = "text-danger"  })
+           
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-10">
+                <input type="submit" value="Publish" class="btn btn-default btn-primary" />
+            </div>
+        </div>
+    </div>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+
+<script type="text/javascript" language="javascript">
+    $("#Search").typeahead({
+    source: function (query, process) {
+        var countries = [];
+        map = {};
+
+        // This is going to make an HTTP post request to the controller
+        return $.post('/Stories/CountryLookup', { query: query }, function (data) {
+
+            // Loop through and push to the array
+            $.each(data, function (i, country) {
+                map[country.Name] = country;
+                countries.push(country.Name);
+            });
+
+            // Process the details
+            process(countries);
+        });
+    },
+    updater: function (item) {
+        var selectedShortCode = map[item].ShortCode;
+
+        // Set the text to our selected id
+        $("#details").text("Selected : " + selectedShortCode);
+        return item;
+    }
+});
+
+</script>
+}
+
+@*<script src="@Url.Content("~/Scripts/bootstrap-typeahead.js")"></script>*@
+
+
+

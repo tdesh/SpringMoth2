@@ -1,0 +1,51 @@
+﻿@model NotForgottenTwo.Models.Invitation
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Invitation</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.InviteeEmail)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.InviteeEmail)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.InviteSentDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.InviteSentDate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.LastReminderDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.LastReminderDate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.InviteAccepted)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.InviteAccepted)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>
